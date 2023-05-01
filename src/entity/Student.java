@@ -1,0 +1,63 @@
+package entity;
+
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.*;
+
+//@Entity(name ="student_table")
+@Entity//required (default - table =student)
+//@Table(name="student_table")//optional
+@DynamicUpdate // one element eka witarak run wenna
+public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO) // Auto dapuwama hibernate sequence table ekkk hdenwa, Identity dpuwa  internaly tmai generate wenne
+    @Column(name ="id")
+    private long studentId;
+    @Column(name = "name",length = 45,nullable = false)
+    private String studentName;
+    private double marks;
+
+    public Student(long studentId, String studentName, double marks) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.marks = marks;
+    }
+
+
+    public Student() {
+    }
+
+    public long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(long studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public double getMarks() {
+        return marks;
+    }
+
+    public void setMarks(double marks) {
+        this.marks = marks;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", studentName='" + studentName + '\'' +
+                ", marks=" + marks +
+                '}';
+    }
+}
